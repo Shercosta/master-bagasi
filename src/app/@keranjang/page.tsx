@@ -1,5 +1,5 @@
-import Tab from "@/components/Tab";
+import SelectOrDeleteAll from "@/components/SelectOrDeleteAll";
 
 export default function Keranjang() {
-  return <Tab>Keranjang</Tab>;
+  return <SelectOrDeleteAll />;
 }
