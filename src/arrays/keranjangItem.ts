@@ -16,7 +16,7 @@ const keranjangItem = [
                 price: 50000,
             },
             {
-                type: "Kecil",
+                type: "Besar",
                 weight: 1.3,
                 price: 70000,
             },

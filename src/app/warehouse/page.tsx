@@ -12,10 +12,10 @@ export default function warehouse() {
         <div className="p-3">Keranjang</div>
       </div>
       <div className="flex flex-row border-b">
-        <Link className="w-1/2 p-3 text-center" href="/">
+        <Link className="w-1/2 p-2 text-center" href="/">
           Daftar Keranjang ({keranjangItem.length})
         </Link>
-        <Link className="w-1/2 p-3 text-center active" href="/warehouse">
+        <Link className="w-1/2 p-2 text-center active" href="/warehouse">
           Warehouse
         </Link>
       </div>
