@@ -1,5 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
+import keranjangItem from "@/arrays/keranjangItem";
 
 export default function warehouse() {
   return (
@@ -12,7 +13,7 @@ export default function warehouse() {
       </div>
       <div className="flex flex-row border-b">
         <Link className="w-1/2 p-3 text-center" href="/">
-          Daftar Keranjang
+          Daftar Keranjang ({keranjangItem.length})
         </Link>
         <Link className="w-1/2 p-3 text-center active" href="/warehouse">
           Warehouse
