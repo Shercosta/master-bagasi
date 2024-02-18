@@ -1,0 +1,9 @@
+body {
+  max-width: 412px;
+  max-height: 846px;
+  background-color: wheat;
+}
+
+.main {
+  background-color: white;
+}
