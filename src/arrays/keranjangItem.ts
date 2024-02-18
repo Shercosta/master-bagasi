@@ -41,7 +41,7 @@ const keranjangItem = [
     },
     {
         id: 3,
-        name: "Keyboard",
+        name: "Keyboard Mechanical Baru dari Titanical Elite Modern with 104 Keys",
         pictUrl:
             "https://dorangadget.com/wp-content/uploads/2021/11/Keyboard-Gaming-JETEX-KBX1-4.jpg",
         variant: [

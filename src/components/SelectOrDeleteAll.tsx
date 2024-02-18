@@ -3,7 +3,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 const SelectOrDeleteAll = () => {
   return (
     <>
-      <div className="flex justify-around p-3">
+      <div className="flex justify-between p-3">
         <div id="selectAll">
           <form>
             <input type="checkbox" name="selectAll" id="" />
