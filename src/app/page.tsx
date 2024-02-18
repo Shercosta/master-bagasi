@@ -10,11 +10,11 @@ export default function Home() {
         </div>
         <div className="p-3">Keranjang</div>
       </div>
-      <div className="flex flex-row">
-        <Link className="w-1/2 text-center" href="/">
+      <div className="flex flex-row border-b">
+        <Link className="w-1/2 p-3 text-center active" href="/">
           Daftar Keranjang
         </Link>
-        <Link className="w-1/2 text-center" href="/warehouse">
+        <Link className="w-1/2 p-3 text-center" href="/warehouse">
           Warehouse
         </Link>
       </div>

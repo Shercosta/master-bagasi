@@ -1,7 +1,7 @@
 body {
   max-width: 412px;
   max-height: 846px;
-  background-color: wheat;
+  background-color: lightpink;
 }
 
 .main {
@@ -10,4 +10,8 @@ body {
 
 .delete-button {
   color: red;
+}
+
+.active {
+  background-color: #fde9c7;
 }
