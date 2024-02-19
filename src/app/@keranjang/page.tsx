@@ -6,10 +6,52 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
 export default function Keranjang() {
-  const [received, getReceived] = useState("default");
+  const [received, setReceived] = useState({
+    id: Number,
+    varian: Number,
+  });
   const dispatch = useDispatch();
+  const [selected, setSelected] = useState();
+
+  const [collection, setCollection] = useState([
+    {
+      itemId: -1,
+      var: -1,
+    },
+  ]);
+
+  const addToCollection = (cId: number, cVar: any) => {
+    const collect: { itemId: number; var: any } = { itemId: cId, var: cVar };
+
+    const existsInCollection = collection.find(
+      (item) => (item.itemId as unknown as number) === cId
+    );
+
+    if (!existsInCollection) {
+      setCollection((prevCollection) => [
+        ...prevCollection,
+        { ...collect, itemId: collect.itemId as number },
+      ]);
+    } else if (existsInCollection.var !== cVar) {
+      setCollection((prevCollection) =>
+        prevCollection.map((item) =>
+          item.itemId === cId ? { ...item, var: cVar } : item
+        )
+      );
+    }
+
+    console.log(existsInCollection);
+  };
 
   const buckets = useSelector((state: any) => state.buckets);
+
+  const receive = (a: any, b: any) => {
+    const objReceive = {
+      id: a,
+      varian: b,
+    };
+    setReceived(objReceive);
+  };
 
   return (
     <>
@@ -42,15 +84,11 @@ export default function Keranjang() {
                 <div>
                   <select
                     name={item.name}
-                    id=""
-                    onChange={(event) => {
-                      var selectedVariant = item.variant.find(
-                        (variant: any) => variant.type === event.target.value
-                      );
-                    }}
+                    id="haze"
+                    onChange={(e) => addToCollection(item.id, e.target.value)}
                   >
                     {item.variant.map((variant: any) => (
-                      <option value={variant.type} key={variant.var}>
+                      <option value={variant.var} key={variant.var}>
                         {variant.type}
                       </option>
                     ))}
@@ -66,7 +104,7 @@ export default function Keranjang() {
           </div>
         </div>
       ))}
-      <div>{received}</div>
+      <div onClick={() => console.log(collection)}>bruh</div>
     </>
   );
 }
