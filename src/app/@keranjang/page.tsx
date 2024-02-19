@@ -42,7 +42,9 @@ export default function Keranjang() {
                     }}
                   >
                     {item.variant.map((variant) => (
-                      <option value={variant.type}>{variant.type}</option>
+                      <option value={variant.type} key={variant.var}>
+                        {variant.type}
+                      </option>
                     ))}
                   </select>
                 </div>
