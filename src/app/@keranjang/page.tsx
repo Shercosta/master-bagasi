@@ -1,12 +1,20 @@
 "use client";
 import SelectOrDeleteAll from "@/components/SelectOrDeleteAll";
-import keranjangItem from "@/arrays/keranjangItem";
+// import keranjangItem from "@/arrays/keranjangItem";
+import { getItem } from "@/redux/slices/bucketsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 export default function Keranjang() {
+  const [received, getReceived] = useState("default");
+  const dispatch = useDispatch();
+
+  const buckets = useSelector((state: any) => state.buckets);
+
   return (
     <>
       <SelectOrDeleteAll />
-      {keranjangItem.map((item) => (
+      {buckets.map((item: any) => (
         <div
           className="flex border-b items-center w-full pl-3 pr-2"
           key={item.id}
@@ -37,11 +45,11 @@ export default function Keranjang() {
                     id=""
                     onChange={(event) => {
                       var selectedVariant = item.variant.find(
-                        (variant) => variant.type === event.target.value
+                        (variant: any) => variant.type === event.target.value
                       );
                     }}
                   >
-                    {item.variant.map((variant) => (
+                    {item.variant.map((variant: any) => (
                       <option value={variant.type} key={variant.var}>
                         {variant.type}
                       </option>
@@ -58,6 +66,7 @@ export default function Keranjang() {
           </div>
         </div>
       ))}
+      <div>{received}</div>
     </>
   );
 }
