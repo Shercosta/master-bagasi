@@ -5,9 +5,15 @@ import { seeItem } from "@/redux/slices/bucketsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-// new logic, semua yang ke render di homescreen, masuk ke state.
-
 export default function Keranjang() {
+  // test for receiving a change of state
+  const [received, setReceived] = useState({
+    id: Number,
+    varian: Number,
+  });
+  const dispatch = useDispatch();
+  const [selected, setSelected] = useState();
+
   // test for getting both id and var of keranjangItem (using)
   const [collection, setCollection] = useState([
     {
@@ -42,7 +48,18 @@ export default function Keranjang() {
   // logic to get all the items from a global state that gets keranjangItems
   const buckets = useSelector((state: any) => state.buckets);
 
-  const [inBucket, setInBucket] = useState(buckets);
+  const receive = (a: any, b: any) => {
+    const objReceive = {
+      id: a,
+      varian: b,
+    };
+    setReceived(objReceive);
+  };
+
+  // check if collection exist while printing harga
+  const getHarga = (itemObject: any) => {
+    return itemObject.variant[0].price;
+  };
 
   return (
     <>
@@ -86,7 +103,12 @@ export default function Keranjang() {
                   </select>
                 </div>
                 <div className="flex flex-row justify-between">
-                  <div>price:</div>
+                  <div>
+                    price:
+                    {/* {item.variant[0].price} */}
+                    {/* {item.variant[getHarga()].price} */}
+                    {getHarga(item)}
+                  </div>
                   <div>weight</div>
                 </div>
               </div>
@@ -95,7 +117,8 @@ export default function Keranjang() {
           </div>
         </div>
       ))}
-      <div onClick={() => console.log(inBucket)}>see collection</div>
+      <div onClick={() => console.log(collection)}>see collection</div>
+      <div onClick={() => console.log(getHarga(1))}>see collection</div>
     </>
   );
 }
