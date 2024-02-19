@@ -48,7 +48,8 @@ export default function Keranjang() {
     setInBucket((prevInBucket: any) => ({
       ...prevInBucket,
       // [prevInBucket[0].id - 1]: { ...prevInBucket[0], id: "33" },
-      [prevInBucket[0].id - 1]: { ...prevInBucket[1], name: "Nasi" },
+      [prevInBucket[0].id - 1]: { ...prevInBucket[0], name: "Nasi" },
+      // [prevInBucket[0].id]: { ...prevInBucket[1], name: "Nasi" },
     }));
   };
 
