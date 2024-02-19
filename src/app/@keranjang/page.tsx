@@ -44,6 +44,13 @@ export default function Keranjang() {
 
   const [inBucket, setInBucket] = useState(buckets);
 
+  const changeFirstItemName = () => {
+    setInBucket((prevInBucket: any) => ({
+      ...prevInBucket,
+      [prevInBucket[0].id]: { ...prevInBucket[0], name: "Nasi" },
+    }));
+  };
+
   return (
     <>
       <SelectOrDeleteAll />
@@ -86,7 +93,7 @@ export default function Keranjang() {
                   </select>
                 </div>
                 <div className="flex flex-row justify-between">
-                  <div>price:</div>
+                  <div>price: {buckets[item.id - 1].variant[0].type}</div>
                   <div>weight</div>
                 </div>
               </div>
@@ -95,7 +102,8 @@ export default function Keranjang() {
           </div>
         </div>
       ))}
-      <div onClick={() => console.log(inBucket)}>see collection</div>
+      <div onClick={() => console.log(inBucket)}>see bucketss</div>
+      <div onClick={changeFirstItemName}>Get Nasi</div>
     </>
   );
 }
