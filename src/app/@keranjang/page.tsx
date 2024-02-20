@@ -38,8 +38,31 @@ export default function Keranjang() {
         )
       );
     }
+  };
 
-    console.log(existsInCollection);
+  // take in values from berapa banyaknya item dari yg dipilih
+  const [countItem, setCountItem] = useState([{ countId: -1, countNum: -1 }]);
+
+  const addCountItem = (id: any) => {
+    const collect: { countId: number; countNum: number } = {
+      countId: id,
+      countNum: 2,
+    };
+
+    const existsInCountItem = countItem.find(
+      (item) => (item.countId as unknown as number) === id
+    );
+
+    if (!existsInCountItem) {
+      setCountItem((prevCountItem) => [...prevCountItem, collect]);
+    }
+
+    // setCountItem([
+    //   {
+    //     countId: id,
+    //     countNum: 2,
+    //   },
+    // ]);
   };
 
   // logic to get all the items from a global state that gets keranjangItems
@@ -152,11 +175,15 @@ export default function Keranjang() {
                     </button>
                   </div>
                   <button>
-                    <FaPlus />
-                  </button>
-                  <input className="w-1/3" type="number" />
-                  <button>
                     <FaMinus />
+                  </button>
+                  <input
+                    className="w-1/3"
+                    type="number"
+                    onChange={() => addCountItem(item.id)}
+                  />
+                  <button>
+                    <FaPlus />
                   </button>
                   {/* <div className="flex justify-end">
                   </div> */}
@@ -168,6 +195,7 @@ export default function Keranjang() {
       ))}
       <div onClick={() => console.log(inBucket)}>see bucketss</div>
       <div onClick={() => console.log(collection)}>see Collections</div>
+      <div onClick={() => console.log(countItem)}>see CountItem</div>
       <div onClick={changeFirstItemName}>Get Nasi</div>
     </>
   );

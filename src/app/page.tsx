@@ -5,7 +5,7 @@ import keranjangItem from "@/arrays/keranjangItem";
 export default function Home() {
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center relative">
         <div className="p-3">
           <FaArrowLeft />
         </div>

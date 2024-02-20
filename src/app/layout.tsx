@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="main">
+          <div className="main relative">
             <div>{children}</div>
             {keranjang}
           </div>
