@@ -98,9 +98,11 @@ export default function Keranjang() {
                   {collection.some((arr) => arr.itemId === item.id) && (
                     <>
                       <div>
-                        price {/* down here */}
-                        {collection[item.id].var === 2 && <div>item id 2</div>}
-                        {collection[item.id].var === 1 && <div>item id 1</div>}
+                        {
+                          item.variant[
+                            collection[collection.length - 1].var - 1
+                          ].price
+                        }
                       </div>
                       <div>weight</div>
                     </>
