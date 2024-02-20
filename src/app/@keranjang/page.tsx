@@ -2,7 +2,7 @@
 import SelectOrDeleteAll from "@/components/SelectOrDeleteAll";
 // import keranjangItem from "@/arrays/keranjangItem";
 // import { seeItem } from "@/redux/slices/bucketsSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { RiHeart2Line } from "react-icons/ri";
@@ -12,11 +12,13 @@ import Input from "@/components/Input";
 // new logic, semua yang ke render di homescreen, masuk ke state.
 
 export default function Keranjang() {
+  const dispatch = useDispatch;
+
   // test for getting both id and var of keranjangItem (using)
   const [collection, setCollection] = useState([
     {
       itemId: -1,
-      var: 3,
+      var: -1,
     },
   ]);
 
@@ -42,7 +44,7 @@ export default function Keranjang() {
   };
 
   // take in values from berapa banyaknya item dari yg dipilih
-  const [countItem, setCountItem] = useState([{ countId: 99, countNum: -55 }]);
+  const [countItem, setCountItem] = useState([{ countId: -1, countNum: -1 }]);
 
   const addCountItem = (id: any, eVal: number) => {
     const collect: { countId: number; countNum: number } = {
@@ -133,6 +135,34 @@ export default function Keranjang() {
       const newSelectState = select.filter((arr) => arr.selectId !== id);
       setSelect(newSelectState);
     }
+
+    dispatchPrice(id);
+  };
+
+  const dispatchPrice = (id: any) => {
+    // const getId = inBucket;
+    // console.log(getId);
+    const getVariantIndexInCollection = collection.findIndex(
+      (arr) => arr.itemId === id
+    );
+    console.log(getVariantIndexInCollection);
+
+    const getIndexFromBucket = inBucket.findIndex((arr: any) => arr.id === id);
+    console.log(getIndexFromBucket);
+
+    const getVariantIndexInBucket = inBucket[
+      getIndexFromBucket
+    ].variant.findIndex(
+      (arr: any) => arr.var === collection[getVariantIndexInCollection]?.var
+    );
+
+    const getPrice =
+      inBucket[getIndexFromBucket]?.variant[getVariantIndexInBucket]?.price;
+    console.log(getPrice);
+
+    const getWeight =
+      inBucket[getIndexFromBucket]?.variant[getVariantIndexInBucket]?.weight;
+    console.log(getWeight);
   };
 
   return (
@@ -173,7 +203,9 @@ export default function Keranjang() {
                   <select
                     name={item.name}
                     id="haze"
-                    onChange={(e) => addToCollection(item.id, e.target.value)}
+                    onChange={(e) =>
+                      addToCollection(item.id, Number(e.target.value))
+                    }
                   >
                     {item.variant.map((variant: any) => (
                       <option value={variant.var} key={variant.var}>
@@ -218,8 +250,6 @@ export default function Keranjang() {
                       <div>{item.variant[0].weight} Kg</div>
                     </>
                   )}
-                  {/* <div>price: {buckets[item.id - 1].variant[0].type}</div>
-                  <div>weight</div> */}
                 </div>
               </div>
             </div>
@@ -243,38 +273,10 @@ export default function Keranjang() {
                     item={item}
                     addCountItem={addCountItem}
                   />
-                  {/* {countItem.some((arr) => arr.countId === item.id) ? (
-                    <input
-                      className="w-1/3"
-                      type="number"
-                      value={countItem[item.id]?.countId}
-                      onChange={(e) =>
-                        addCountItem(item.id, Number(e.target.value))
-                      }
-                    />
-                  ) : (
-                    <input
-                      className="w-1/3"
-                      type="number"
-                      onChange={(e) =>
-                        addCountItem(item.id, Number(e.target.value))
-                      }
-                    />
-                  )} */}
-                  {/* <input
-                    className="w-1/3"
-                    type="number"
-                    value={countItem[item.id].countNum}
-                    onChange={(e) =>
-                      addCountItem(item.id, Number(e.target.value))
-                    }
-                  /> */}
-                  {/* down here is the plus button */}
+
                   <button onClick={() => plusCountItem(item.id)}>
                     <FaPlus />
                   </button>
-                  {/* <div className="flex justify-end">
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -284,8 +286,10 @@ export default function Keranjang() {
 
       {/* <div onClick={() => console.log(select)}>see select</div> */}
       {/* <div onClick={() => console.log(inBucket)}>see bucketss</div> */}
-      {/* <div onClick={() => console.log(collection)}>see Collections</div> */}
+      <div onClick={() => console.log(select)}>see selects</div>
+      <div onClick={() => console.log(collection)}>see Collections</div>
       <div onClick={() => console.log(countItem)}>see CountItem</div>
+      <div onClick={() => dispatchPrice(3)}>try Dispatch Price</div>
       {/* <div onClick={changeFirstItemName}>Get Nasi</div> */}
     </>
   );

@@ -9,8 +9,6 @@ interface Props {
 const Input: React.FC<Props> = ({ countItem, item, addCountItem }) => {
   const IdIndex = countItem.findIndex((arr) => arr.countId === item.id);
 
-  console.log(IdIndex);
-
   return (
     <>
       {IdIndex !== -1 ? (
