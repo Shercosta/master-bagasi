@@ -94,22 +94,10 @@ export default function Keranjang() {
     }
   };
 
-  const getCountValue = (id: any) => {
-    const existsInCountItem = countItem.some((arr) => arr.countId);
-    return existsInCountItem;
-  };
-
   // logic to get all the items from a global state that gets keranjangItems
   const buckets = useSelector((state: any) => state.buckets);
 
   const [inBucket, setInBucket] = useState(buckets);
-
-  const changeFirstItemName = () => {
-    setInBucket((prevInBucket: any) => ({
-      ...prevInBucket,
-      [prevInBucket[0].id - 1]: { ...prevInBucket[0], name: "Nasi" },
-    }));
-  };
 
   const [select, setSelect] = useState([
     {
@@ -148,10 +136,10 @@ export default function Keranjang() {
     const getVariantIndexInCollection = collection.findIndex(
       (arr) => arr.itemId === id
     );
-    console.log(getVariantIndexInCollection);
+    // console.log(getVariantIndexInCollection);
 
     const getIndexFromBucket = inBucket.findIndex((arr: any) => arr.id === id);
-    console.log(getIndexFromBucket);
+    // console.log(getIndexFromBucket);
 
     const getVariantIndexInBucket = inBucket[
       getIndexFromBucket
@@ -159,18 +147,24 @@ export default function Keranjang() {
       (arr: any) => arr.var === collection[getVariantIndexInCollection]?.var
     );
 
+    const getIndexFromCountItem = countItem.findIndex(
+      (arr) => arr.countId === id
+    );
+    const getJumlahFromCountItem = countItem[getIndexFromCountItem]?.countNum;
+
     const getPrice =
       inBucket[getIndexFromBucket]?.variant[getVariantIndexInBucket]?.price;
-    console.log(getPrice);
+    // console.log(getPrice);
 
     const getWeight =
       inBucket[getIndexFromBucket]?.variant[getVariantIndexInBucket]?.weight;
-    console.log(getWeight);
+    // console.log(getWeight);
 
     const newPrice = {
       id: id,
       price: getPrice,
       weight: getWeight,
+      multiplier: getJumlahFromCountItem,
     };
 
     console.log(newPrice);
