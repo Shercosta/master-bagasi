@@ -82,6 +82,7 @@ export default function Keranjang() {
                     : item.name}
                 </div>
                 <div>
+                  Varian:
                   <select
                     name={item.name}
                     id="haze"
@@ -98,6 +99,7 @@ export default function Keranjang() {
                   {collection.some((arr) => arr.itemId === item.id) && (
                     <>
                       <div>
+                        Rp{" "}
                         {
                           item.variant[
                             collection[
@@ -108,7 +110,25 @@ export default function Keranjang() {
                           ].price
                         }
                       </div>
-                      <div>weight</div>
+                      <div>
+                        {
+                          item.variant[
+                            collection[
+                              collection.findIndex(
+                                (arr) => arr.itemId == item.id
+                              )
+                            ].var - 1
+                          ].weight
+                        }{" "}
+                        Kg
+                      </div>
+                    </>
+                  )}
+                  {collection.some((arr) => arr.itemId === item.id) ===
+                    false && (
+                    <>
+                      <div>Rp {item.variant[0].price}</div>
+                      <div>{item.variant[0].weight} Kg</div>
                     </>
                   )}
                   {/* <div>price: {buckets[item.id - 1].variant[0].type}</div>
