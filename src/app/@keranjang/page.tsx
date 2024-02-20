@@ -95,8 +95,18 @@ export default function Keranjang() {
                   </select>
                 </div>
                 <div className="flex flex-row justify-between">
-                  <div>price: {buckets[item.id - 1].variant[0].type}</div>
-                  <div>weight</div>
+                  {collection.some((arr) => arr.itemId === item.id) && (
+                    <>
+                      <div>
+                        price {/* down here */}
+                        {collection[item.id].var === 2 && <div>item id 2</div>}
+                        {collection[item.id].var === 1 && <div>item id 1</div>}
+                      </div>
+                      <div>weight</div>
+                    </>
+                  )}
+                  {/* <div>price: {buckets[item.id - 1].variant[0].type}</div>
+                  <div>weight</div> */}
                 </div>
               </div>
             </div>
@@ -105,6 +115,7 @@ export default function Keranjang() {
         </div>
       ))}
       <div onClick={() => console.log(inBucket)}>see bucketss</div>
+      <div onClick={() => console.log(collection)}>see Collections</div>
       <div onClick={changeFirstItemName}>Get Nasi</div>
     </>
   );
