@@ -290,9 +290,9 @@ export default function Keranjang() {
         </div>
       ))}
 
-      <div onClick={() => console.log(currentItemsInPrice)}>
+      {/* <div onClick={() => console.log(currentItemsInPrice)}>
         see items in price
-      </div>
+      </div> */}
       {/* <div onClick={() => console.log(select)}>see select</div> */}
       {/* <div onClick={() => console.log(inBucket)}>see bucketss</div> */}
       {/* <div onClick={() => console.log(select)}>see selects</div> */}

@@ -17,6 +17,10 @@ body {
   color: #a56b40;
 }
 
+.color-signature {
+  color: orangered;
+}
+
 .bn15 {
   font-family: lato, sans-serif;
   font-weight: bold;

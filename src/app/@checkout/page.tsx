@@ -19,7 +19,7 @@ export default function Checkout() {
         <div className="flex flex-col">
           <div className="flex flex-row justify-between">
             <div>Keranjang yang dipilih</div>
-            <div>2 Item</div>
+            <div>{total.length - 1} Item</div>
           </div>
           <div className="flex flex-row justify-between">
             <div>Warehouse yang dipilih</div>
@@ -28,7 +28,7 @@ export default function Checkout() {
           <div className="flex flex-row justify-between">
             <div className="flex flex-col">
               <div>Total Belanja</div>
-              <div>Rp {totalRp}</div>
+              <div className="color-signature">Rp {totalRp}</div>
             </div>
 
             <div>
