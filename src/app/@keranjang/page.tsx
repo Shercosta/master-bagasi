@@ -7,6 +7,7 @@ import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { RiHeart2Line } from "react-icons/ri";
 import { FaPlus, FaMinus } from "react-icons/fa6";
+import Input from "@/components/Input";
 
 // new logic, semua yang ke render di homescreen, masuk ke state.
 
@@ -41,7 +42,7 @@ export default function Keranjang() {
   };
 
   // take in values from berapa banyaknya item dari yg dipilih
-  const [countItem, setCountItem] = useState([{ countId: -1, countNum: -1 }]);
+  const [countItem, setCountItem] = useState([{ countId: 99, countNum: -55 }]);
 
   const addCountItem = (id: any, eVal: number) => {
     const collect: { countId: number; countNum: number } = {
@@ -62,6 +63,37 @@ export default function Keranjang() {
         )
       );
     }
+  };
+
+  const plusCountItem = (id: any) => {
+    const existsInCountItem = countItem.findIndex(
+      (item) => (item.countId as unknown as number) === id
+    );
+
+    // console.log(existsInCountItem);
+
+    if (existsInCountItem === -1) {
+      addCountItem(id, 1);
+    } else {
+      addCountItem(id, countItem[existsInCountItem].countNum + 1);
+    }
+  };
+
+  const minusCountItem = (id: any) => {
+    const existsInCountItem = countItem.findIndex(
+      (item) => (item.countId as unknown as number) === id
+    );
+
+    if (existsInCountItem === -1) {
+      addCountItem(id, -1);
+    } else {
+      addCountItem(id, countItem[existsInCountItem].countNum - 1);
+    }
+  };
+
+  const getCountValue = (id: any) => {
+    const existsInCountItem = countItem.some((arr) => arr.countId);
+    return existsInCountItem;
   };
 
   // logic to get all the items from a global state that gets keranjangItems
@@ -203,17 +235,42 @@ export default function Keranjang() {
                       <FaRegTrashAlt />
                     </button>
                   </div>
-                  <button>
+                  <button onClick={() => minusCountItem(item.id)}>
                     <FaMinus />
                   </button>
-                  <input
+                  <Input
+                    countItem={countItem}
+                    item={item}
+                    addCountItem={addCountItem}
+                  />
+                  {/* {countItem.some((arr) => arr.countId === item.id) ? (
+                    <input
+                      className="w-1/3"
+                      type="number"
+                      value={countItem[item.id]?.countId}
+                      onChange={(e) =>
+                        addCountItem(item.id, Number(e.target.value))
+                      }
+                    />
+                  ) : (
+                    <input
+                      className="w-1/3"
+                      type="number"
+                      onChange={(e) =>
+                        addCountItem(item.id, Number(e.target.value))
+                      }
+                    />
+                  )} */}
+                  {/* <input
                     className="w-1/3"
                     type="number"
+                    value={countItem[item.id].countNum}
                     onChange={(e) =>
                       addCountItem(item.id, Number(e.target.value))
                     }
-                  />
-                  <button>
+                  /> */}
+                  {/* down here is the plus button */}
+                  <button onClick={() => plusCountItem(item.id)}>
                     <FaPlus />
                   </button>
                   {/* <div className="flex justify-end">
@@ -225,11 +282,11 @@ export default function Keranjang() {
         </div>
       ))}
 
-      {/* <div onClick={() => console.log(select)}>see select</div>
-      <div onClick={() => console.log(inBucket)}>see bucketss</div>
-      <div onClick={() => console.log(collection)}>see Collections</div>
+      {/* <div onClick={() => console.log(select)}>see select</div> */}
+      {/* <div onClick={() => console.log(inBucket)}>see bucketss</div> */}
+      {/* <div onClick={() => console.log(collection)}>see Collections</div> */}
       <div onClick={() => console.log(countItem)}>see CountItem</div>
-      <div onClick={changeFirstItemName}>Get Nasi</div> */}
+      {/* <div onClick={changeFirstItemName}>Get Nasi</div> */}
     </>
   );
 }
