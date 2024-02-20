@@ -4,6 +4,9 @@ import SelectOrDeleteAll from "@/components/SelectOrDeleteAll";
 import { seeItem } from "@/redux/slices/bucketsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { RiHeart2Line } from "react-icons/ri";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 
 // new logic, semua yang ke render di homescreen, masuk ke state.
 
@@ -64,7 +67,7 @@ export default function Keranjang() {
           <div className="w-1/12">
             <input type="checkbox" name="" id="" />
           </div>
-          <div className="flex flex-col items-center w-11/12">
+          <div className="flex flex-col w-11/12">
             <div className="flex flex-row items-center w-full">
               <div className="w-1/4">
                 <img
@@ -136,7 +139,30 @@ export default function Keranjang() {
                 </div>
               </div>
             </div>
-            <div>F</div>
+            <div className="flex flex-row">
+              <div className="w-1/4"></div>
+              <div className="w-3/4">
+                <div className="flex flex-row justify-between pb-2">
+                  <div>
+                    <button className="p-2">
+                      <RiHeart2Line />
+                    </button>
+                    <button className="bn15 p-2">
+                      <FaRegTrashAlt />
+                    </button>
+                  </div>
+                  <button>
+                    <FaPlus />
+                  </button>
+                  <input className="w-1/3" type="number" />
+                  <button>
+                    <FaMinus />
+                  </button>
+                  {/* <div className="flex justify-end">
+                  </div> */}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ))}

@@ -16,3 +16,16 @@ body {
   background-color: #fde9c7;
   color: #a56b40;
 }
+
+.bn15 {
+  font-family: lato, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background-color: red;
+  /* padding: 10px 40px 10px 40px; */
+  position: relative;
+  color: white;
+  border-radius: 10px;
+}
