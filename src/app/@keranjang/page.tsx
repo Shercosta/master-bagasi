@@ -8,11 +8,12 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { RiHeart2Line } from "react-icons/ri";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import Input from "@/components/Input";
+import { storePrice } from "@/redux/slices/priceSlice";
 
 // new logic, semua yang ke render di homescreen, masuk ke state.
 
 export default function Keranjang() {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   // test for getting both id and var of keranjangItem (using)
   const [collection, setCollection] = useState([
@@ -139,6 +140,8 @@ export default function Keranjang() {
     dispatchPrice(id);
   };
 
+  const currentItemsInPrice = useSelector((state: any) => state.price);
+
   const dispatchPrice = (id: any) => {
     // const getId = inBucket;
     // console.log(getId);
@@ -163,6 +166,15 @@ export default function Keranjang() {
     const getWeight =
       inBucket[getIndexFromBucket]?.variant[getVariantIndexInBucket]?.weight;
     console.log(getWeight);
+
+    const newPrice = {
+      id: id,
+      price: getPrice,
+      weight: getWeight,
+    };
+
+    console.log(newPrice);
+    dispatch(storePrice(newPrice));
   };
 
   return (
@@ -284,12 +296,15 @@ export default function Keranjang() {
         </div>
       ))}
 
+      <div onClick={() => console.log(currentItemsInPrice)}>
+        see items in price
+      </div>
       {/* <div onClick={() => console.log(select)}>see select</div> */}
       {/* <div onClick={() => console.log(inBucket)}>see bucketss</div> */}
-      <div onClick={() => console.log(select)}>see selects</div>
-      <div onClick={() => console.log(collection)}>see Collections</div>
-      <div onClick={() => console.log(countItem)}>see CountItem</div>
-      <div onClick={() => dispatchPrice(3)}>try Dispatch Price</div>
+      {/* <div onClick={() => console.log(select)}>see selects</div> */}
+      {/* <div onClick={() => console.log(collection)}>see Collections</div> */}
+      {/* <div onClick={() => console.log(countItem)}>see CountItem</div> */}
+      {/* <div onClick={() => dispatchPrice(3)}>try Dispatch Price</div> */}
       {/* <div onClick={changeFirstItemName}>Get Nasi</div> */}
     </>
   );

@@ -11,8 +11,27 @@ const priceSlice = createSlice({
     initialState,
     reducers: {
         storePrice: (state, action: PayloadAction<any>) => {
-            const thisPrice = action.payload
-            console.log(state)
+
+            const newState = {
+                id: action.payload.id,
+                price: action.payload.price,
+                weight: action.payload.weight,
+            }
+
+            const existsInState = state.some((item: any) => (item.id as unknown as number) === newState.id)
+
+            if (!existsInState) {
+                state.push(newState)
+            } else {
+                const findExistIndexInState = state.findIndex((arr: any) => arr.id === newState.id)
+                const newStateArrays = [
+                    ...state.slice(0, findExistIndexInState),
+                    { ...state[findExistIndexInState], price: newState.price, weight: newState.weight },
+                    ...state.slice(findExistIndexInState + 1)
+                ]
+                // console.log(newStateArrays)
+                return newStateArrays
+            }
         }
     }
 })
