@@ -43,10 +43,10 @@ export default function Keranjang() {
   // take in values from berapa banyaknya item dari yg dipilih
   const [countItem, setCountItem] = useState([{ countId: -1, countNum: -1 }]);
 
-  const addCountItem = (id: any) => {
+  const addCountItem = (id: any, eVal: number) => {
     const collect: { countId: number; countNum: number } = {
       countId: id,
-      countNum: 2,
+      countNum: eVal,
     };
 
     const existsInCountItem = countItem.find(
@@ -55,6 +55,12 @@ export default function Keranjang() {
 
     if (!existsInCountItem) {
       setCountItem((prevCountItem) => [...prevCountItem, collect]);
+    } else if (existsInCountItem.countNum !== eVal) {
+      setCountItem((prevCountItem) =>
+        prevCountItem.map((item) =>
+          item.countId === id ? { ...item, countNum: eVal } : item
+        )
+      );
     }
 
     // setCountItem([
@@ -180,7 +186,9 @@ export default function Keranjang() {
                   <input
                     className="w-1/3"
                     type="number"
-                    onChange={() => addCountItem(item.id)}
+                    onChange={(e) =>
+                      addCountItem(item.id, Number(e.target.value))
+                    }
                   />
                   <button>
                     <FaPlus />
