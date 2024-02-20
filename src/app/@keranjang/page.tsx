@@ -100,7 +100,11 @@ export default function Keranjang() {
                       <div>
                         {
                           item.variant[
-                            collection[collection.length - 1].var - 1
+                            collection[
+                              collection.findIndex(
+                                (arr) => arr.itemId == item.id
+                              )
+                            ].var - 1
                           ].price
                         }
                       </div>
