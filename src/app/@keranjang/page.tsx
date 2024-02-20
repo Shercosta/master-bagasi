@@ -85,6 +85,33 @@ export default function Keranjang() {
     }));
   };
 
+  const [select, setSelect] = useState([
+    {
+      selectId: -1,
+      status: false,
+    },
+  ]);
+
+  const addToDipilih = (id: any, eStatus: boolean) => {
+    const newSelect: { selectId: number; status: boolean } = {
+      selectId: id,
+      status: eStatus,
+    };
+
+    const existInSelect = select.find(
+      (item) => (item.selectId as unknown as number) === id
+    );
+
+    console.log(eStatus);
+
+    if (!existInSelect) {
+      setSelect((prevSelect) => [...prevSelect, newSelect]);
+    } else if (existInSelect.status !== eStatus) {
+      const newSelectState = select.filter((arr) => arr.selectId !== id);
+      setSelect(newSelectState);
+    }
+  };
+
   return (
     <>
       <SelectOrDeleteAll />
@@ -94,7 +121,12 @@ export default function Keranjang() {
           key={item.id}
         >
           <div className="w-1/12">
-            <input type="checkbox" name="" id="" />
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              onChange={(e) => addToDipilih(item.id, e.target.checked)}
+            />
           </div>
           <div className="flex flex-col w-11/12">
             <div className="flex flex-row items-center w-full">
@@ -201,6 +233,7 @@ export default function Keranjang() {
           </div>
         </div>
       ))}
+      <div onClick={() => console.log(select)}>see select</div>
       <div onClick={() => console.log(inBucket)}>see bucketss</div>
       <div onClick={() => console.log(collection)}>see Collections</div>
       <div onClick={() => console.log(countItem)}>see CountItem</div>
