@@ -8,7 +8,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { RiHeart2Line } from "react-icons/ri";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import Input from "@/components/Input";
-import { storePrice } from "@/redux/slices/priceSlice";
+import { storePrice, removePrice } from "@/redux/slices/priceSlice";
 
 // new logic, semua yang ke render di homescreen, masuk ke state.
 
@@ -132,12 +132,12 @@ export default function Keranjang() {
 
     if (!existInSelect) {
       setSelect((prevSelect) => [...prevSelect, newSelect]);
+      dispatchPrice(id);
     } else if (existInSelect.status !== eStatus) {
       const newSelectState = select.filter((arr) => arr.selectId !== id);
       setSelect(newSelectState);
+      dispatch(removePrice(id));
     }
-
-    dispatchPrice(id);
   };
 
   const currentItemsInPrice = useSelector((state: any) => state.price);

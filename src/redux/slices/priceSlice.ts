@@ -32,9 +32,13 @@ const priceSlice = createSlice({
                 // console.log(newStateArrays)
                 return newStateArrays
             }
+        },
+        removePrice: (state, action: PayloadAction<any>) => {
+            const id = action.payload
+            return state.filter((arr: any) => arr.id !== id)
         }
     }
 })
 
-export const { storePrice } = priceSlice.actions
+export const { storePrice, removePrice } = priceSlice.actions
 export default priceSlice.reducer
