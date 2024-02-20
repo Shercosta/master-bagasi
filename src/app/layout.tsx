@@ -14,9 +14,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   keranjang,
+  checkout,
 }: Readonly<{
   children: React.ReactNode;
   keranjang: React.ReactNode;
+  checkout: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -25,6 +27,7 @@ export default function RootLayout({
           <div className="main relative">
             <div>{children}</div>
             {keranjang}
+            {checkout}
           </div>
         </Providers>
       </body>

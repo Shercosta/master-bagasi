@@ -1,9 +1,9 @@
 "use client";
 import SelectOrDeleteAll from "@/components/SelectOrDeleteAll";
 // import keranjangItem from "@/arrays/keranjangItem";
-import { seeItem } from "@/redux/slices/bucketsSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+// import { seeItem } from "@/redux/slices/bucketsSlice";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { RiHeart2Line } from "react-icons/ri";
 import { FaPlus, FaMinus } from "react-icons/fa6";
@@ -62,13 +62,6 @@ export default function Keranjang() {
         )
       );
     }
-
-    // setCountItem([
-    //   {
-    //     countId: id,
-    //     countNum: 2,
-    //   },
-    // ]);
   };
 
   // logic to get all the items from a global state that gets keranjangItems
@@ -79,9 +72,7 @@ export default function Keranjang() {
   const changeFirstItemName = () => {
     setInBucket((prevInBucket: any) => ({
       ...prevInBucket,
-      // [prevInBucket[0].id - 1]: { ...prevInBucket[0], id: "33" },
       [prevInBucket[0].id - 1]: { ...prevInBucket[0], name: "Nasi" },
-      // [prevInBucket[0].id]: { ...prevInBucket[1], name: "Nasi" },
     }));
   };
 
@@ -233,11 +224,12 @@ export default function Keranjang() {
           </div>
         </div>
       ))}
-      <div onClick={() => console.log(select)}>see select</div>
+
+      {/* <div onClick={() => console.log(select)}>see select</div>
       <div onClick={() => console.log(inBucket)}>see bucketss</div>
       <div onClick={() => console.log(collection)}>see Collections</div>
       <div onClick={() => console.log(countItem)}>see CountItem</div>
-      <div onClick={changeFirstItemName}>Get Nasi</div>
+      <div onClick={changeFirstItemName}>Get Nasi</div> */}
     </>
   );
 }

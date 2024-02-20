@@ -29,3 +29,16 @@ body {
   color: white;
   border-radius: 10px;
 }
+
+.bn15-checkout {
+  font-family: lato, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background-color: orangered;
+  /* padding: 10px 40px 10px 40px; */
+  position: relative;
+  color: white;
+  border-radius: 10px;
+}
