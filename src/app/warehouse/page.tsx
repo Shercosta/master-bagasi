@@ -2,7 +2,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import keranjangItem from "@/arrays/keranjangItem";
 
-export default function warehouse() {
+export default function Warehouse() {
   return (
     <>
       <div className="flex items-center">
